@@ -1,4 +1,837 @@
 <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-chart">
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <h4>Sales Org</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Sales Org</mat-label>
+                              <mat-select>
+                                <mat-option [value]="1">PK01</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <h4>Status</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Status</mat-label>
+                              <mat-select>
+                                  <mat-option [value]="1">Not Processed</mat-option>
+                                  <mat-option [value]="2">In Process</mat-option>
+                                  <mat-option [value]="3">Failed</mat-option>
+                                  <mat-option [value]="4">Posted</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <h4>TimeFrame</h4>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Time Frame</mat-label>
+                            <mat-select (selectionChange)="onSelectionChange($event)">
+                                <mat-option [value]="1">Last X Hours</mat-option>
+                                <mat-option [value]="2">Date Range</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="showDropdown">
+                        <h4>Time</h4>
+                        <!-- <mat-form-field appearance="fill">
+                            <mat-label>Time</mat-label>
+                            <mat-select [value]="1">
+                                <mat-option [value]="1">24 Hours</mat-option>
+                                <mat-option [value]="2">36 Hours</mat-option>
+                                <mat-option [value]="2">48 Hours</mat-option>
+                                <mat-option [value]="2">52 Hours</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                          <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Hours" type="number" max="99" min="0">
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="!showDropdown">
+                          <h4>Date Time range</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Date Time range</mat-label>
+                              <mat-date-range-input [rangePicker]="picker">
+                                  <input matStartDate placeholder="Start date">
+                                  <input matEndDate placeholder="End date">
+                              </mat-date-range-input>
+                              <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-date-range-picker #picker></mat-date-range-picker>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6" >
+                        <button mat-raised-button type="submit" style="margin-top: 40px;" class="btn btn-danger pull-right">Filter</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+              <div class="card-header card-header-warning">
+                  <h4 class="card-title">Process View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">Unread Emails</p>
+                                  <h3 class="card-title">4
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <!-- <i class="material-icons text-danger">warning</i> -->
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 5</a>
+                                    
+                                    <table *ngIf="showTableFlag" class="popover table table-hover">
+                                        <thead class="text-warning">
+                                            <th>Sales Org</th>
+                                            <th>Count</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>CN01</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IN03</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IN04</td>
+                                                <td>2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">3</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 2</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 0</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Validation Forms</p>
+                                <h3 class="card-title">1</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">update</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Action Forms</p>
+                                <h3 class="card-title">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">local_offer</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 0</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Completed</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 4</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-warning">
+                                  <th>Email Received</th>
+                                  <th>Read By Bot</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>12/28/2022 6:31PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>12/28/2022 5:16PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>12/28/2022 4:28PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>12/28/2022 4:16PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>Unread</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header card-header-warning">
+                                <h4 class="card-title">Email In Process</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88041113</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-warning">
+                                <h4 class="card-title">Last Email Processed</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-warning">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                        <th>Order No.</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PK01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88041178</td>
+                                            <td>1142</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88041145</td>
+                                            <td>1138</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+              <div class="card-header card-header-success">
+                  <h4 class="card-title">PDF Reading View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">UnProcessed</p>
+                                  <h3 class="card-title">2
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 5</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">4</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 3</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Validation Forms</p>
+                                <h3 class="card-title">1</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">update</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Action Forms</p>
+                                <h3 class="card-title">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">local_offer</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 0</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Success</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-success">
+                                  <th>Received in PDF Queue</th>
+                                  <th>PDF Read By Bot</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>12/28/2022 6:31PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>12/28/2022 5:16PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>12/28/2022 4:28PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>12/28/2022 4:16PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header card-header-success">
+                                <h4 class="card-title">PDF In Process</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-success">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88046373</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-success">
+                                <h4 class="card-title">Last PDF Processed</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-success">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                        <th>Order No.</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PK01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88042382</td>
+                                            <td>1142</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88041583</td>
+                                            <td>1138</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+              <div class="card-header card-header-info">
+                  <h4 class="card-title">Order Creation View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">UnProcessed</p>
+                                  <h3 class="card-title">2
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">4</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Validation Forms</p>
+                                <h3 class="card-title">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">update</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 0</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-danger card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <p class="card-category">Action Forms</p>
+                                <h3 class="card-title">2</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <!-- <i class="material-icons">local_offer</i>  -->
+                                    <a href="javascript:void(0)">Details</a>
+                                </div>
+                                <div class="stats">
+                                  <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 0</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                      <div class="col-lg-2 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Success</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">Details</a>
+                                  </div>
+                                  <div class="stats">
+                                    <a href="#" (mouseenter)="showTable()" (mouseleave)="hideTable()">Other Sales Org: 1</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-info">
+                                  <th>Received in Order Queue</th>
+                                  <th>Order Read by Bot</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                                  <th>Total Time Taken</th>
+                                  <th></th>
+                                  <!-- 
+                                    1. Document type
+                                    2. Email Received Time
+                                    3. Email Read By Bot
+                                    4. Received in PDF Queue
+                                    5. PDF Read By Bot
+                                    6. Validation Form ID 
+                                    7. Validation Form Completed On
+                                    8. Validation Form Completed By
+                                    9. Action Form ID
+                                    10. Action Form Generated On
+                                    11. Action Form Completed On
+                                    12. Action Form Completed By
+                                    13. Order Completion Time
+                                    14. Order Number
+                                    15. Total Time Taken
+                                 -->
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>12/28/2022 6:31PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>In Progress</td>
+                                      <td>20m:10s</td>
+                                      <td><button mat-button (click)="openDialog()">Details</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>12/28/2022 5:16PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>In Progress</td>
+                                      <td>10m:01s</td>
+                                      <td><button mat-button (click)="openDialog()">Details</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>12/28/2022 4:28PM EST</td>
+                                      <td>muhammad.rafiq@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>In Progress</td>
+                                      <td>21m:20s</td>
+                                      <td><button mat-button (click)="openDialog()">Details</button></td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>12/28/2022 4:16PM EST</td>
+                                      <td>imran.bukhari@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>In Progress</td>
+                                      <td>15m:06s</td>
+                                      <td><button mat-button (click)="openDialog()">Details</button></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Order In Process</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-info">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88040003</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-info">
+                                <h4 class="card-title">Last Order Processed</h4>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-info">
+                                        <th>Sales Org</th>
+                                        <th>Email Received</th>
+                                        <th>Email Subject</th>
+                                        <th>Order No.</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PK01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88040372</td>
+                                            <td>1142</td>
+                                        </tr>
+                                        <tr>
+                                            <td>CN01</td>
+                                            <td>12/28/2022 5:06PM EST</td>
+                                            <td>88049353</td>
+                                            <td>1138</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+<!-- <div class="main-content">
   <div class="container-fluid">
       <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
@@ -412,4 +1245,4 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->

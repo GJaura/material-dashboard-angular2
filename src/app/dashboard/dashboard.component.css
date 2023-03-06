@@ -1,0 +1,23 @@
+.popover {
+    opacity: 1;
+  
+  position: absolute;
+  
+  transform: translate(0, 10px);
+  background-color: #f8f5f5;
+  padding: 0.5rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  width: auto;
+}
+
+dialog {
+    display: contents !important;
+}
+
+.my-outlined-dialog {
+    display: contents !important;
+}
+
+dialog:not([open]) {
+    display: contents !important;
+}

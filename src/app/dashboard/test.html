@@ -1,0 +1,426 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="card">
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <h4>Sales Org</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Sales Org</mat-label>
+                              <mat-select>
+                                <mat-option [value]="1">US01</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <h4>Status</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Status</mat-label>
+                              <mat-select>
+                                  <mat-option>Not Processed</mat-option>
+                                  <mat-option>In Process</mat-option>
+                                  <mat-option>Failed</mat-option>
+                                  <mat-option>Posted</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-lg-6 col-md-12 col-sm-12">
+                          <h4>Date Time range</h4>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Date Time range</mat-label>
+                              <mat-date-range-input [rangePicker]="picker">
+                                  <input matStartDate placeholder="Start date">
+                                  <input matEndDate placeholder="End date">
+                              </mat-date-range-input>
+                              <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+                              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-date-range-picker #picker></mat-date-range-picker>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="card">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">Current Order Processing</h4>
+                  </div>
+                  <div class="card-body table-responsive">
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="card">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">Last Order Processed</h4>
+                  </div>
+                  <div class="card-body table-responsive">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="card">
+              <div class="card-header card-header-warning">
+                  <h4 class="card-title">Email View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">Unread Emails</p>
+                                  <h3 class="card-title">10
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">3</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Completed</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-warning">
+                                  <th>Time Received</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>Imran.Bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>Gagan.Singh@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>Manish.Jain@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>Unread</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>Xavier.Oliquiano@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>Unread</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="card">
+              <div class="card-header card-header-success">
+                  <h4 class="card-title">PDF Reading View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">UnProcessed</p>
+                                  <h3 class="card-title">10
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">3</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Success</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-success">
+                                  <th>Time Received</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>Imran.Bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>Gagan.Singh@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>Manish.Jain@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>Xavier.Oliquiano@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="card">
+              <div class="card-header card-header-info">
+                  <h4 class="card-title">Order Creation View</h4>
+                  <!-- <p class="card-category">This section will show the Mailbox view</p> -->
+              </div>
+              <div class="card-body table-responsive">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-info card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">content_copy</i>
+                                  </div>
+                                  <p class="card-category">UnProcessed</p>
+                                  <h3 class="card-title">10
+                                      <!-- <small>GB</small> -->
+                                  </h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons text-danger">warning</i> -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-warning card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">store</i>
+                                  </div>
+                                  <p class="card-category">In Progress</p>
+                                  <h3 class="card-title">3</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">date_range</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-danger card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">info_outline</i>
+                                  </div>
+                                  <p class="card-category">Error</p>
+                                  <h3 class="card-title">1</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">local_offer</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-sm-6">
+                          <div class="card card-stats">
+                              <div class="card-header card-header-success card-header-icon">
+                                  <div class="card-icon">
+                                      <i class="material-icons">thumb_up</i>
+                                  </div>
+                                  <p class="card-category">Success</p>
+                                  <h3 class="card-title">5</h3>
+                              </div>
+                              <div class="card-footer">
+                                  <div class="stats">
+                                      <!-- <i class="material-icons">update</i>  -->
+                                      <a href="javascript:void(0)">View Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-info">
+                                  <th>Time Received</th>
+                                  <th>Email From</th>
+                                  <th>Email Subject</th>
+                                  <th>Current Status</th>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>12/28/2022 6:26PM EST</td>
+                                      <td>Imran.Bukhari@fmc.com</td>
+                                      <td>88041392</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 5:06PM EST</td>
+                                      <td>Gagan.Singh@fmc.com</td>
+                                      <td>88041112</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:18PM EST</td>
+                                      <td>Manish.Jain@fmc.com</td>
+                                      <td>88044678</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12/28/2022 4:11PM EST</td>
+                                      <td>Xavier.Oliquiano@fmc.com</td>
+                                      <td>88015328</td>
+                                      <td>In Progress</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
